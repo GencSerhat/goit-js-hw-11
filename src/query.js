@@ -17,7 +17,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
 const imagesContainer = document.querySelector('.images-container');
-const loader = document.querySelector('.loader'); 
+const loader = document.querySelector('.loader');
 
 //Butona tıklama olayı
 
@@ -36,37 +36,37 @@ function fetchImages(query) {
   const url = `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(
     query
   )}&image_type=photo&orientation=horizontal&safesearch=true`;
-  loader.style.visibility = 'visible';// Loader'ı göster
+  loader.style.visibility = 'visible'; // Loader'ı göster
   imagesContainer.innerHTML = ''; // Önceki içeriği temizle
 
   setTimeout(() => {
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('API isteği başarısız oldu');
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.hits.length > 0) {
-        displayImages(data.hits);
-      } else {
-        imagesContainer.innerHTML = iziToast.error({
-          message:
-            'Sorry, there are no images matching your search query. Please try again!',
-          position: 'topRight',
-        });
-      }
-    })
-    .catch(error => {
-      console.log('Hata : ', error);
-      imagesContainer.innerHTML =
-        '<p>Bir hata oluştu lütfen tekrar deneyin </p>';
-    })
-    .finally(() => {
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('API isteği başarısız oldu');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.hits.length > 0) {
+          displayImages(data.hits);
+        } else {
+          imagesContainer.innerHTML = iziToast.error({
+            message:
+              'Sorry, there are no images matching your search query. Please try again!',
+            position: 'topRight',
+          });
+        }
+      })
+      .catch(error => {
+        console.log('Hata : ', error);
+        imagesContainer.innerHTML =
+          '<p>Bir hata oluştu lütfen tekrar deneyin </p>';
+      })
+      .finally(() => {
         loader.style.visibility = 'hidden'; // Loader'ı gizle
       });
-},500);
+  }, 500);
 }
 
 // Resimleri ekrana bastım
