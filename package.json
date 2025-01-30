@@ -3,10 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
- 
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=https://gencserhat.github.io/goit-js-hw-11/",
+    "build": "vite build --base=/vanilla-app-template/",
     "preview": "vite preview"
   },
   "devDependencies": {
