@@ -17,6 +17,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 const searchInput = document.querySelector('.search-input');
 const searchButton = document.querySelector('.search-btn');
 const imagesContainer = document.querySelector('.images-container');
+const loader = document.querySelector('.loader'); 
 
 //Butona tıklama olayı
 
@@ -35,7 +36,10 @@ function fetchImages(query) {
   const url = `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(
     query
   )}&image_type=photo&orientation=horizontal&safesearch=true`;
+  loader.style.visibility = 'visible';// Loader'ı göster
+  imagesContainer.innerHTML = ''; // Önceki içeriği temizle
 
+  setTimeout(() => {
   fetch(url)
     .then(response => {
       if (!response.ok) {
@@ -58,7 +62,11 @@ function fetchImages(query) {
       console.log('Hata : ', error);
       imagesContainer.innerHTML =
         '<p>Bir hata oluştu lütfen tekrar deneyin </p>';
-    });
+    })
+    .finally(() => {
+        loader.style.visibility = 'hidden'; // Loader'ı gizle
+      });
+},500);
 }
 
 // Resimleri ekrana bastım
