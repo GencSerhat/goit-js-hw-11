@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+ "homepage" : "https://github.com/GencSerhat/goit-js-hw-11",
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/vanilla-app-template/",
