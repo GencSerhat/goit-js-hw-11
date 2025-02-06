@@ -26,7 +26,10 @@ searchButton.addEventListener('click', () => {
   if (query) {
     fetchImages(query); // resimleri getir
   } else {
-    alert('Lütfen bir klime girin');
+    iziToast.warning({
+      message: 'Please enter a search term.',
+      position: 'topRight',
+    });
   }
 });
 
@@ -51,9 +54,8 @@ function fetchImages(query) {
         if (data.hits.length > 0) {
           displayImages(data.hits);
         } else {
-          imagesContainer.innerHTML = iziToast.error({
-            message:
-              'Sorry, there are no images matching your search query. Please try again!',
+          iziToast.error({
+            message: 'Sorry, there are no images matching your search query. Please try again!',
             position: 'topRight',
           });
         }
